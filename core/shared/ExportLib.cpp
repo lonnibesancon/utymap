@@ -1,9 +1,9 @@
 #if _MSC_VER
-#define EXPORT_API __declspec(dllexport)
+#define UTYMAP_API __declspec(dllexport)
 #elif _GCC
-#define EXPORT_API __attribute__((visibility("default")))
+#define UTYMAP_API __attribute__((visibility("default")))
 #else
-#define EXPORT_API
+#define UTYMAP_API
 #endif
 
 #include "Application.hpp"
@@ -13,38 +13,38 @@ static Application* applicationPtr = nullptr;
 extern "C"
 {
     /// Composes object graph.
-    void EXPORT_API configure(const char* dataPath,    // path to data directory which stores index/ele data
+    void UTYMAP_API configure(const char* dataPath,    // path to data directory which stores index/ele data
                               OnError* errorCallback)  // completion callback.
     {
         applicationPtr = new Application(dataPath, errorCallback);
     }
 
     /// Performs cleanup.
-    void EXPORT_API cleanup()
+    void UTYMAP_API cleanup()
     {
         delete applicationPtr;
     }
 
     /// Register stylesheet.
-    void EXPORT_API registerStylesheet(const char* path)
+    void UTYMAP_API registerStylesheet(const char* path)
     {
         applicationPtr->registerStylesheet(path);
     }
 
     /// Registers new in-memory store.
-    void EXPORT_API registerInMemoryStore(const char* key)
+    void UTYMAP_API registerInMemoryStore(const char* key)
     {
         applicationPtr->registerInMemoryStore(key);
     }
 
     /// Registers new persistent store.
-    void EXPORT_API registerPersistentStore(const char* key, const char* dataPath)
+    void UTYMAP_API registerPersistentStore(const char* key, const char* dataPath)
     {
         applicationPtr->registerPersistentStore(key, dataPath);
     }
 
     /// Adds data to store to specific level of details range.
-    void EXPORT_API addToStoreInRange(const char* key,           // store key
+    void UTYMAP_API addToStoreInRange(const char* key,           // store key
                                       const char* styleFile,     // style file
                                       const char* path,          // path to data
                                       int startLod,              // start zoom level
@@ -55,7 +55,7 @@ extern "C"
    }
 
     /// Adds data to store to specific level of details range.
-    void EXPORT_API addToStoreInBoundingBox(const char* key,           // store key
+    void UTYMAP_API addToStoreInBoundingBox(const char* key,           // store key
                                             const char* styleFile,     // style file
                                             const char* path,          // path to data
                                             double minLat,             // minimal latitude
@@ -72,7 +72,7 @@ extern "C"
     }
 
     /// Adds data to store to specific quadkey only.
-    void EXPORT_API addToStoreInQuadKey(const char* key,           // store key
+    void UTYMAP_API addToStoreInQuadKey(const char* key,           // store key
                                         const char* styleFile,     // style file
                                         const char* path,          // path to data
                                         int tileX,                 // tile x
@@ -84,7 +84,7 @@ extern "C"
     }
 
     /// Adds element to store. NOTE: relation is not yet supported.
-    void EXPORT_API addToStoreElement(const char* key,           // store key
+    void UTYMAP_API addToStoreElement(const char* key,           // store key
                                       const char* styleFile,     // style file
                                       std::uint64_t id,          // element id
                                       const double* vertices,    // vertex array
@@ -137,7 +137,7 @@ extern "C"
     }
 
     /// Loads quadkey.
-    void EXPORT_API loadQuadKey(const char* styleFile,                   // style file
+    void UTYMAP_API loadQuadKey(const char* styleFile,                   // style file
                                 int tileX, int tileY, int levelOfDetail, // quadkey info
                                 int eleDataType,                         // elevation data type
                                 OnMeshBuilt* meshCallback,               // mesh callback
@@ -150,13 +150,13 @@ extern "C"
     }
 
     /// Checks whether there is data for given quadkey.
-    bool EXPORT_API hasData(int tileX, int tileY, int levelOfDetail)
+    bool UTYMAP_API hasData(int tileX, int tileY, int levelOfDetail)
     {
         return applicationPtr->hasData(utymap::QuadKey(levelOfDetail, tileX, tileY));
     }
 
     /// Gets elevation for given point using specific elevation provider.
-    double EXPORT_API getElevation(int tileX, int tileY, int levelOfDetail, // quadkey info
+    double UTYMAP_API getElevation(int tileX, int tileY, int levelOfDetail, // quadkey info
                                    int eleDataType,                         // elevation data type
                                    double latitude,                         // point's latitude
                                    double longitude)                        // point's longitude

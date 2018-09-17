@@ -10,14 +10,16 @@ set(TEST_SOURCE ${PROJECT_SOURCE_DIR}/test)
 set(SHARED_SOURCE ${PROJECT_SOURCE_DIR}/shared)
 
 
-set(BOOST_ROOT C:/workspace/projects/libraries/boost_1_62_0)
-set(BOOST_LIBRARYDIR ${BOOST_ROOT}/stage/lib)
+find_package(Boost REQUIRED)
+find_package(Protobuf REQUIRED)    
 
-set(PROTOBUF_INCLUDE_DIR C:/workspace/projects/libraries/protobuf-2.6.1/src)
-set(Protobuf_SRC_ROOT_FOLDER C:/workspace/projects/libraries/protobuf-2.6.1/src)
-set(PROTOBUF_LIBRARY C:/workspace/projects/libraries/protobuf-2.6.1/vsprojects/x64/Release/libprotobuf.lib)
-set(PROTOBUF_PROTOC_EXECUTABLE C:/workspace/projects/libraries/protobuf-2.6.1/stage/protoc.exe)
+#set(BOOST_ROOT C:/workspace/projects/libraries/boost_1_62_0)
+#set(BOOST_LIBRARYDIR ${BOOST_ROOT}/stage/lib)
 
+#set(PROTOBUF_INCLUDE_DIR C:/workspace/projects/libraries/protobuf-2.6.1/src)
+#set(Protobuf_SRC_ROOT_FOLDER C:/workspace/projects/libraries/protobuf-2.6.1/src)
+#set(PROTOBUF_LIBRARY C:/workspace/projects/libraries/protobuf-2.6.1/vsprojects/x64/Release/libprotobuf.lib)
+#set(PROTOBUF_PROTOC_EXECUTABLE C:/workspace/projects/libraries/protobuf-2.6.1/stage/protoc.exe)
 set(ZLIB_INCLUDE_DIR C:/workspace/projects/libraries/zlib)
 set(ZLIB_LIBRARY C:/workspace/projects/libraries/zlib/build/Debug/zlibd.lib)
 

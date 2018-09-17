@@ -2,7 +2,9 @@ cmake_minimum_required (VERSION 3.1)
 project ("UtyMap")
 
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "/EHsc")
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+	set(CMAKE_CXX_FLAGS "/EHsc")
+endif()
 
 set(MAIN_SOURCE ${PROJECT_SOURCE_DIR}/src)
 set(LIB_SOURCE ${PROJECT_SOURCE_DIR}/lib)
@@ -10,18 +12,6 @@ set(TEST_SOURCE ${PROJECT_SOURCE_DIR}/test)
 set(SHARED_SOURCE ${PROJECT_SOURCE_DIR}/shared)
 
 
-find_package(Boost REQUIRED)
-find_package(Protobuf REQUIRED)    
-
-#set(BOOST_ROOT C:/workspace/projects/libraries/boost_1_62_0)
-#set(BOOST_LIBRARYDIR ${BOOST_ROOT}/stage/lib)
-
-#set(PROTOBUF_INCLUDE_DIR C:/workspace/projects/libraries/protobuf-2.6.1/src)
-#set(Protobuf_SRC_ROOT_FOLDER C:/workspace/projects/libraries/protobuf-2.6.1/src)
-#set(PROTOBUF_LIBRARY C:/workspace/projects/libraries/protobuf-2.6.1/vsprojects/x64/Release/libprotobuf.lib)
-#set(PROTOBUF_PROTOC_EXECUTABLE C:/workspace/projects/libraries/protobuf-2.6.1/stage/protoc.exe)
-set(ZLIB_INCLUDE_DIR C:/workspace/projects/libraries/zlib)
-set(ZLIB_LIBRARY C:/workspace/projects/libraries/zlib/build/Debug/zlibd.lib)
 
 # initialize boost
 find_package(Boost REQUIRED)
